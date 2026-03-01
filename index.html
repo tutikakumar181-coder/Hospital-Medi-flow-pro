@@ -1,0 +1,181 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediFlow Pro | Hospital Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-grid"></div>
+
+  <header class="topbar glass reveal">
+    <div class="brand-wrap">
+      <div class="brand-mark">+</div>
+      <div>
+        <p class="eyebrow">Advanced Care Platform</p>
+        <h1>MediFlow Pro</h1>
+      </div>
+    </div>
+    <nav class="top-links">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#appointments">Appointments</a>
+      <a href="#doctors">Doctors</a>
+      <a href="#records">Records</a>
+    </nav>
+    <button id="themeToggle" class="btn subtle">Switch Theme</button>
+  </header>
+
+  <main class="layout" id="dashboard">
+    <aside class="sidebar glass reveal delay-1">
+      <h2>Control Panel</h2>
+      <button class="quick-link active" data-target="overview">Overview</button>
+      <button class="quick-link" data-target="appointments">Appointments</button>
+      <button class="quick-link" data-target="doctors">Doctors</button>
+      <button class="quick-link" data-target="beds">Bed Status</button>
+      <button class="quick-link" data-target="records">Patient Records</button>
+      <button class="quick-link" data-target="alerts">Alerts</button>
+
+      <div class="hero-card pulse-card">
+        <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?auto=format&fit=crop&w=900&q=80" alt="Hospital interior" />
+        <div>
+          <h3>Real-Time Hospital Ops</h3>
+          <p>Automated workflows for better patient outcomes.</p>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <section class="banner glass reveal delay-2">
+        <div>
+          <p class="eyebrow">Smart Healthcare Workflow</p>
+          <h2>Modern Hospital Management Experience</h2>
+          <p>Track patients, manage appointments, monitor occupancy, and coordinate care teams from one integrated platform.</p>
+          <div class="banner-actions">
+            <button class="btn primary" id="openDemoModal">Launch Daily Brief</button>
+            <button class="btn subtle" id="seedData">Load Demo Data</button>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1000&q=80" alt="Medical team in discussion" />
+      </section>
+
+      <section class="stats-grid" id="overview">
+        <article class="stat-card glass reveal">
+          <p>Today Appointments</p>
+          <h3 id="statAppointments">0</h3>
+          <span class="trend up">+12% from yesterday</span>
+        </article>
+        <article class="stat-card glass reveal delay-1">
+          <p>Active Patients</p>
+          <h3 id="statPatients">0</h3>
+          <span class="trend up">+7% admissions</span>
+        </article>
+        <article class="stat-card glass reveal delay-2">
+          <p>Bed Occupancy</p>
+          <h3><span id="statBeds">0</span>%</h3>
+          <span class="trend warn">Monitor ICU usage</span>
+        </article>
+        <article class="stat-card glass reveal delay-3">
+          <p>Critical Alerts</p>
+          <h3 id="statAlerts">0</h3>
+          <span class="trend down">-3 resolved today</span>
+        </article>
+      </section>
+
+      <section class="panel-grid">
+        <article class="panel glass reveal" id="appointments">
+          <div class="panel-head">
+            <h3>Appointment Scheduler</h3>
+            <p>Register and manage patient visits instantly.</p>
+          </div>
+          <form id="appointmentForm" class="grid-form">
+            <input type="text" id="patientName" placeholder="Patient name" required />
+            <input type="text" id="department" placeholder="Department" required />
+            <input type="date" id="appointmentDate" required />
+            <select id="priority">
+              <option>Standard</option>
+              <option>Urgent</option>
+              <option>Emergency</option>
+            </select>
+            <button class="btn primary" type="submit">Add Appointment</button>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Patient</th>
+                  <th>Department</th>
+                  <th>Date</th>
+                  <th>Priority</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="appointmentsTable"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel glass reveal delay-1" id="doctors">
+          <div class="panel-head">
+            <h3>Doctor Availability</h3>
+            <p>Live roster and shift statuses.</p>
+          </div>
+          <div id="doctorCards" class="doctor-cards"></div>
+        </article>
+
+        <article class="panel glass reveal delay-2" id="beds">
+          <div class="panel-head">
+            <h3>Bed Management</h3>
+            <p>Track ICU, general, and emergency capacity.</p>
+          </div>
+          <div class="bed-bars" id="bedBars"></div>
+        </article>
+
+        <article class="panel glass reveal delay-3" id="records">
+          <div class="panel-head">
+            <h3>Patient Records</h3>
+            <p>Filter by name, diagnosis, or status.</p>
+          </div>
+          <input type="search" id="recordSearch" placeholder="Search patient records..." />
+          <ul id="recordList" class="record-list"></ul>
+        </article>
+
+        <article class="panel glass reveal" id="alerts">
+          <div class="panel-head">
+            <h3>Critical Alerts Feed</h3>
+            <p>Automated updates from emergency and ward stations.</p>
+          </div>
+          <ul id="alertFeed" class="alert-feed"></ul>
+        </article>
+
+        <article class="panel glass reveal delay-1 gallery-panel">
+          <div class="panel-head">
+            <h3>Facility Highlights</h3>
+            <p>Professional and patient-focused environments.</p>
+          </div>
+          <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80" alt="Doctor and patient consultation" />
+            <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=900&q=80" alt="Emergency room team" />
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=80" alt="Hospital nurse station" />
+          </div>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal" id="briefModal" aria-hidden="true">
+    <div class="modal-card glass">
+      <h3>Daily Hospital Brief</h3>
+      <p id="briefText"></p>
+      <button class="btn primary" id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
